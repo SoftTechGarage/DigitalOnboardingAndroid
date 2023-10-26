@@ -12,7 +12,7 @@ Softtech DigitalOnboarding Android SDK.
 <uses-permission android:name="android.permission.RECORD_AUDIO" />
 <uses-permission android:name="android.permission.NFC" />
 ```
-## 2: You must add the api key to the plist.
+## 2: You must add the api key to the Android Manifest.
 ```xml
   <meta-data
     android:name="com.sanalogi.cameralibrary"
