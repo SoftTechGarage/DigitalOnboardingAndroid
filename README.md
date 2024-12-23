@@ -165,16 +165,18 @@ You could use the builder to init the SDK with the required and optional paramet
   ```
 
 - All available options
-Onboarding
-    .setContext(context: Context) // required
-    .setEndpoint(endpoint: String) // required
-    .setPredefined(predefined: String) // optional
-    .setLanguage(language: String) // optional
-    .setProcess(processId: String) // optional
-    .setExternalKey(externalKey: String) // optional
-    .themeMode(boolean: Boolean) // optional
-    .setJson(json: String) // optional
-    .start()
+  ```kotlin
+  Onboarding
+      .setContext(context: Context) // required
+      .setEndpoint(endpoint: String) // required
+      .setPredefined(predefined: String) // optional
+      .setLanguage(language: String) // optional
+      .setProcess(processId: String) // optional
+      .setExternalKey(externalKey: String) // optional
+      .themeMode(boolean: Boolean) // optional
+      .setJson(json: String) // optional
+      .start()
+  ```
 
 > Breaking through the parameters:
 
