@@ -137,22 +137,51 @@ packagingOptions {
 If your application uses `ProGuard`, the following rules should be added, otherwise you might encounter unexpected runtime errors.
 
 ```Proguard
+-dontwarn javax.naming.NamingEnumeration
+-dontwarn javax.naming.NamingException
+-dontwarn javax.naming.directory.Attribute
+-dontwarn javax.naming.directory.Attributes
+-dontwarn javax.naming.directory.DirContext
+-dontwarn javax.naming.directory.InitialDirContext
+-dontwarn javax.naming.directory.SearchControls
+-dontwarn javax.naming.directory.SearchResult
+-dontwarn kotlinx.parcelize.Parcelize
+
 # ONBOARDING
 -keep class com.softtech.onboarding.conn.model.** { *; }
+
+# OCR - NFC
 -keep class org.opencv.** { *;}
 -keep class net.sf.scuba.smartcards.IsoDepCardService { *;}
 -keep class org.spongycastle.** { *;}
 -keep class org.bouncycastle.** { *;}
 
 # Retrofit
--keep interface retrofit2.Retrofit$Builder { *; }
--keep interface retrofit2.** { *; }
--keepattributes Signature
+-keepattributes Signature, InnerClasses, EnclosingMethod
 -keepattributes *Annotation*
--keep class retrofit2.** { *; }
--keepclassmembers class * {
+
+-keepclassmembers,allowshrinking,allowobfuscation interface * {
     @retrofit2.http.* <methods>;
 }
+
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+-dontwarn javax.annotation.**
+-dontwarn kotlin.Unit
+-dontwarn retrofit2.KotlinExtensions
+-dontwarn retrofit2.KotlinExtensions$*
+
+-if interface * { @retrofit2.http.* <methods>; }
+-keep,allowobfuscation interface <1>
+
+-if interface * { @retrofit2.http.* <methods>; }
+-keep,allowobfuscation interface * extends <1>
+
+-keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
+
+-if interface * { @retrofit2.http.* public *** *(...); }
+-keep,allowoptimization,allowshrinking,allowobfuscation class <3>
+
+-keep,allowobfuscation,allowshrinking class retrofit2.Response
 
 # Gson
 -keep class com.google.gson.** { *; }
@@ -161,6 +190,63 @@ If your application uses `ProGuard`, the following rules should be added, otherw
 -keep class okhttp3.** { *; }
 -keep interface okhttp3.** { *; }
 -keepclassmembers class okhttp3.** { *; }
+
+# Jitsi
+-keep,allowobfuscation @interface com.facebook.proguard.annotations.DoNotStrip
+-keep,allowobfuscation @interface com.facebook.proguard.annotations.KeepGettersAndSetters
+
+-keep @com.facebook.proguard.annotations.DoNotStrip class *
+-keepclassmembers class * {
+    @com.facebook.proguard.annotations.DoNotStrip *;
+}
+
+-keep @com.facebook.proguard.annotations.DoNotStripAny class * {
+    *;
+}
+
+-keepclassmembers @com.facebook.proguard.annotations.KeepGettersAndSetters class * {
+  void set*(***);
+  *** get*();
+}
+
+-keep class * implements com.facebook.react.bridge.JavaScriptModule { *; }
+-keep class * implements com.facebook.react.bridge.NativeModule { *; }
+-keepclassmembers,includedescriptorclasses class * { native <methods>; }
+-keepclassmembers class *  { @com.facebook.react.uimanager.annotations.ReactProp <methods>; }
+-keepclassmembers class *  { @com.facebook.react.uimanager.annotations.ReactPropGroup <methods>; }
+
+-dontwarn com.facebook.react.**
+-keep,includedescriptorclasses class com.facebook.react.bridge.** { *; }
+-keep,includedescriptorclasses class com.facebook.react.turbomodule.core.** { *; }
+
+-keep class com.facebook.jni.** { *; }
+
+-dontwarn java.nio.file.*
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+-dontwarn okio.**
+
+-keep class org.webrtc.** { *; }
+-dontwarn org.chromium.build.BuildHooksAndroid
+
+-keep class org.jitsi.meet.** { *; }
+-keep class org.jitsi.meet.sdk.** { *; }
+
+-keep class com.facebook.react.bridge.CatalystInstanceImpl { *; }
+-keep class com.facebook.react.bridge.JavaScriptExecutor { *; }
+-keep class com.facebook.react.bridge.ReadableType { *; }
+-keep class com.facebook.react.bridge.queue.NativeRunnable { *; }
+-keep class com.facebook.react.devsupport.** { *; }
+
+-dontwarn com.facebook.react.devsupport.**
+-dontwarn com.google.appengine.**
+-dontwarn com.squareup.okhttp.**
+-dontwarn javax.servlet.**
+
+-keep public class com.horcrux.svg.** {*;}
+
+-keep public class com.facebook.imageutils.** {
+   public *;
+}
 ```
 ### 8. Miscellaneous
 
