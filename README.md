@@ -137,11 +137,30 @@ packagingOptions {
 If your application uses `ProGuard`, the following rules should be added, otherwise you might encounter unexpected runtime errors.
 
 ```Proguard
+# ONBOARDING
 -keep class com.softtech.onboarding.conn.model.** { *; }
 -keep class org.opencv.** { *;}
 -keep class net.sf.scuba.smartcards.IsoDepCardService { *;}
 -keep class org.spongycastle.** { *;}
 -keep class org.bouncycastle.** { *;}
+
+# Retrofit
+-keep interface retrofit2.Retrofit$Builder { *; }
+-keep interface retrofit2.** { *; }
+-keepattributes Signature
+-keepattributes *Annotation*
+-keep class retrofit2.** { *; }
+-keepclassmembers class * {
+    @retrofit2.http.* <methods>;
+}
+
+# Gson
+-keep class com.google.gson.** { *; }
+
+# OkHttp
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+-keepclassmembers class okhttp3.** { *; }
 ```
 ### 8. Miscellaneous
 
