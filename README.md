@@ -1,5 +1,5 @@
 # Softtech Digital Onboarding Release 2.6.0 and NFCReader release 0.2.14
-This document walkthroughs the necessary steps that should be taken to integrate the latest SDKs into your project.
+This document walkthroughs the necessary steps that should be taken to integrate the latest SDKs into your project. Please download `onboarding-2.6.0.aar` & `NFCReader-0.2.14.aar` and follow the instructions below.
 
 ## Updated dependencies
 
