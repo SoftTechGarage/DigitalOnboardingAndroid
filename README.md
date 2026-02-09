@@ -1,6 +1,11 @@
 # Softtech Digital Onboarding Android SDK
 This document walkthroughs the necessary steps that should be taken to integrate the Onboarding Android SDK into your project.
 
+## CHANGELOG (v2.7.0)
+- ```kotlinVersion``` bumped from 1.8.0 to 2.0.0
+- ```minSdkVersion``` bumped from 24 to 26
+- The updated version of the jitsi must be added in the build.gradle dependencies as follows: ```implementation ("org.jitsi.react:jitsi-meet-sdk:11.6.3") { transitive = true }```
+
 ## Prerequisites
 - ```NFCReader-[version].aar``` : The NFCReader SDK must be integrated into the project in order to use the Onboarding SDK.
 - ```minSdk 24``` : The Onboarding SDK supports android sdk versions starting from 24. The onboarding SDK won't work unless your project root is set to minSDK at least 24.
